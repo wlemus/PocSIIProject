@@ -1,0 +1,52 @@
+name: PocSII
+
+services:
+  mssql:
+    # https://hub.docker.com/_/microsoft-mssql-server
+    image: mcr.microsoft.com/mssql/server:2022-CU12-ubuntu-22.04
+    restart: no
+    user: root
+    hostname: scratch-mssql
+    environment:
+      # https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-configure-environment-variables
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=${DB_PASSWORD} # Set in env file
+      - MSSQL_PID=Developer # i.e. all features, but licensed for dev/test only
+      - MSSQL_BACKUP_DIR=/var/opt/mssql/backups
+      - MSSQL_LCID=1033 # English
+      - TZ=Etc/UTC # https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-configure-time-zone
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S scratch-mssql -U sa -P '${DB_PASSWORD}' -Q "SELECT 1" -b -o /dev/null
+      interval: 10s
+      timeout: 1s
+      retries: 3
+      start_period: 30s
+    ports:
+      - 14330:1433
+    volumes:
+      # You can't map to the root of the container, so we map to the subdirectories
+      - ./data/backups:/var/opt/mssql/backups
+      - ./data/data:/var/opt/mssql/data
+      - ./data/log:/var/opt/mssql/log # uncomment if you want to map the error log directory
+  mssql-tools:
+    # https://hub.docker.com/_/microsoft-mssql-tools
+    image: mcr.microsoft.com/mssql-tools:latest
+    restart: no
+    command: "/opt/mssql-tools/bin/sqlcmd -S scratch-mssql -l 5 -U sa -P '${DB_PASSWORD}' -d master -i /tmp/mssql-init.sql"
+    depends_on:
+      mssql:
+        condition: service_healthy
+    volumes:
+      - ./PocSIIDatabaseScript.sql:/tmp/mssql-init.sql
+
+  mock-server:
+    image: mock-server
+    build: ./imposter/
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./imposter/config:/opt/imposter/config:ro
+
+networks:
+  default:
+    name: scratch-mssql-net
