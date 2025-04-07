@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<soapenv:Body>
+		<ns1:getEstDteResponse
+soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+			xmlns:ns1="https://maullin.sii.cl/DTEWS/QueryEstDte.jws">
+			<getEstDteReturn xsi:type="xsd:string">
+				&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+				&lt;SII:RESPUESTA
+					xmlns:SII=&quot;http://www.sii.cl/XMLSchema&quot;&gt;
+					&lt;SII:RESP_HDR&gt;
+						&lt;ESTADO&gt;EMP&lt;/ESTADO&gt;
+						&lt;GLOSA&gt;DTE No Recibido&lt;/GLOSA&gt;
+						&lt;ERR_CODE&gt;6&lt;/ERR_CODE&gt;
+						&lt;GLOSA_ERR&gt;Empresa No Autorizada a Emitir Documentos Tributarios Electronicos&lt;/GLOSA_ERR&gt;
+						&lt;NUM_ATENCION&gt;532 ( 2004/06/14 16:44:20)&lt;/NUM_ATENCION&gt;
+					&lt;/SII:RESP_HDR&gt;
+				&lt;/SII:RESPUESTA&gt;
+			</getEstDteReturn>
+		</ns1:getEstDteResponse>
+	</soapenv:Body>
+</soapenv:Envelope>

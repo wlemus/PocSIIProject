@@ -1,0 +1,378 @@
+plugin: rest
+resources:
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  formParams:
+    folio: 1100
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>0</STATUS>
+        <TRACKID>1100</TRACKID>
+      </RECEPCIONDTE>
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  formParams:
+    folio: 1101
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>0</STATUS>
+        <TRACKID>1101</TRACKID>
+      </RECEPCIONDTE>
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  formParams:
+    folio: 1102
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>0</STATUS>
+        <TRACKID>1102</TRACKID>
+      </RECEPCIONDTE>
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  formParams:
+    folio: 1103
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>0</STATUS>
+        <TRACKID>1103</TRACKID>
+      </RECEPCIONDTE>
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  formParams:
+    folio: 1104
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>0</STATUS>
+        <TRACKID>1104</TRACKID>
+      </RECEPCIONDTE>
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  formParams:
+    folio: 1105
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>0</STATUS>
+        <TRACKID>1105</TRACKID>
+      </RECEPCIONDTE>
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  formParams:
+    folio: 1106
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>0</STATUS>
+        <TRACKID>1106</TRACKID>
+      </RECEPCIONDTE>
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  formParams:
+    folio: 1107
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>0</STATUS>
+        <TRACKID>1107</TRACKID>
+      </RECEPCIONDTE>
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  formParams:
+    folio: 1108
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>0</STATUS>
+        <TRACKID>1108</TRACKID>
+      </RECEPCIONDTE>
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  formParams:
+    folio: 1109
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>0</STATUS>
+        <TRACKID>1109</TRACKID>
+      </RECEPCIONDTE>
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  formParams:
+    folio: 1110
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>0</STATUS>
+        <TRACKID>1110</TRACKID>
+      </RECEPCIONDTE>
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  formParams:
+    folio: 1111
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>0</STATUS>
+        <TRACKID>1111</TRACKID>
+      </RECEPCIONDTE>
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>${context.request.formParams.folio}</STATUS>
+      </RECEPCIONDTE>
+
+- method: POST
+  path: /DTEWS/QueryEstDte
+  formParams:
+      trackid: 1100
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    file: DOK.xml
+
+- method: POST
+  path: /DTEWS/QueryEstDte
+  formParams:
+      trackid: 1101
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    file: DNK.xml
+
+- method: POST
+  path: /DTEWS/QueryEstDte
+  formParams:
+      trackid: 1102
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    file: FAU.xml
+
+- method: POST
+  path: /DTEWS/QueryEstDte
+  formParams:
+      trackid: 1103
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    file: FNA.xml
+
+- method: POST
+  path: /DTEWS/QueryEstDte
+  formParams:
+      trackid: 1104
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    file: FAN.xml
+
+- method: POST
+  path: /DTEWS/QueryEstDte
+  formParams:
+      trackid: 1105
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    file: EMP.xml
+
+- method: POST
+  path: /DTEWS/QueryEstDte
+  formParams:
+      trackid: 1106
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    file: TMD.xml
+
+- method: POST
+  path: /DTEWS/QueryEstDte
+  formParams:
+      trackid: 1107
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    file: TMC.xml
+
+- method: POST
+  path: /DTEWS/QueryEstDte
+  formParams:
+      trackid: 1108
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    file: MMD.xml
+
+- method: POST
+  path: /DTEWS/QueryEstDte
+  formParams:
+      trackid: 1109
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    file: MMC.xml
+
+- method: POST
+  path: /DTEWS/QueryEstDte
+  formParams:
+      trackid: 1110
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    file: AND.xml
+
+- method: POST
+  path: /DTEWS/QueryEstDte
+  formParams:
+      trackid: 1111
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    file: ANC.xml
