@@ -35,8 +35,7 @@ resources:
         <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
         <FILE>${context.request.formParams.filename}</FILE>
         <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
-        <STATUS>0</STATUS>
-        <TRACKID>1101</TRACKID>
+        <STATUS>1</STATUS>
       </RECEPCIONDTE>
 - method: POST
   path: /cgi_dte/UPL/DTEUpload
@@ -54,8 +53,7 @@ resources:
         <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
         <FILE>${context.request.formParams.filename}</FILE>
         <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
-        <STATUS>0</STATUS>
-        <TRACKID>1102</TRACKID>
+        <STATUS>2</STATUS>
       </RECEPCIONDTE>
 - method: POST
   path: /cgi_dte/UPL/DTEUpload
@@ -73,8 +71,7 @@ resources:
         <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
         <FILE>${context.request.formParams.filename}</FILE>
         <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
-        <STATUS>0</STATUS>
-        <TRACKID>1103</TRACKID>
+        <STATUS>3</STATUS>
       </RECEPCIONDTE>
 - method: POST
   path: /cgi_dte/UPL/DTEUpload
@@ -92,8 +89,7 @@ resources:
         <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
         <FILE>${context.request.formParams.filename}</FILE>
         <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
-        <STATUS>0</STATUS>
-        <TRACKID>1104</TRACKID>
+        <STATUS>4</STATUS>
       </RECEPCIONDTE>
 - method: POST
   path: /cgi_dte/UPL/DTEUpload
@@ -111,8 +107,7 @@ resources:
         <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
         <FILE>${context.request.formParams.filename}</FILE>
         <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
-        <STATUS>0</STATUS>
-        <TRACKID>1105</TRACKID>
+        <STATUS>5</STATUS>
       </RECEPCIONDTE>
 - method: POST
   path: /cgi_dte/UPL/DTEUpload
@@ -130,8 +125,7 @@ resources:
         <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
         <FILE>${context.request.formParams.filename}</FILE>
         <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
-        <STATUS>0</STATUS>
-        <TRACKID>1106</TRACKID>
+        <STATUS>6</STATUS>
       </RECEPCIONDTE>
 - method: POST
   path: /cgi_dte/UPL/DTEUpload
@@ -149,8 +143,7 @@ resources:
         <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
         <FILE>${context.request.formParams.filename}</FILE>
         <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
-        <STATUS>0</STATUS>
-        <TRACKID>1107</TRACKID>
+        <STATUS>7</STATUS>
       </RECEPCIONDTE>
 - method: POST
   path: /cgi_dte/UPL/DTEUpload
@@ -168,8 +161,7 @@ resources:
         <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
         <FILE>${context.request.formParams.filename}</FILE>
         <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
-        <STATUS>0</STATUS>
-        <TRACKID>1108</TRACKID>
+        <STATUS>8</STATUS>
       </RECEPCIONDTE>
 - method: POST
   path: /cgi_dte/UPL/DTEUpload
@@ -187,8 +179,7 @@ resources:
         <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
         <FILE>${context.request.formParams.filename}</FILE>
         <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
-        <STATUS>0</STATUS>
-        <TRACKID>1109</TRACKID>
+        <STATUS>9</STATUS>
       </RECEPCIONDTE>
 - method: POST
   path: /cgi_dte/UPL/DTEUpload
@@ -206,8 +197,7 @@ resources:
         <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
         <FILE>${context.request.formParams.filename}</FILE>
         <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
-        <STATUS>0</STATUS>
-        <TRACKID>1110</TRACKID>
+        <STATUS>9</STATUS>
       </RECEPCIONDTE>
 - method: POST
   path: /cgi_dte/UPL/DTEUpload
@@ -225,24 +215,7 @@ resources:
         <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
         <FILE>${context.request.formParams.filename}</FILE>
         <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
-        <STATUS>0</STATUS>
-        <TRACKID>1111</TRACKID>
-      </RECEPCIONDTE>
-- method: POST
-  path: /cgi_dte/UPL/DTEUpload
-  response:
-    template: true
-    statusCode: 200
-    headers:
-      Content-Type: application/xml
-    content: |
-      <?xml version="1.0" ?>
-      <RECEPCIONDTE>
-        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
-        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
-        <FILE>${context.request.formParams.filename}</FILE>
-        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
-        <STATUS>${context.request.formParams.folio}</STATUS>
+        <STATUS>9</STATUS>
       </RECEPCIONDTE>
 
 - method: POST
