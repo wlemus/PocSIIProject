@@ -27,8 +27,36 @@ namespace PocSII.DteAPIInfrastructure.Context {
 
         public virtual DbSet<TipoDocumentoEntity> TipoDocumentos { get; set; }
 
-      
+        public virtual DbSet<DocumentoNonSQLEntity> DocumentosNonSQL { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
+
+            modelBuilder.Entity<DocumentoNonSQLEntity>(entity =>
+            {
+                entity.ToTable("DocumentoNonSQL");
+
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id)
+                      .HasMaxLength(50)
+                      .IsRequired();
+
+                entity.Property(e => e.Contenedor)
+                      .HasMaxLength(100)
+                      .IsRequired();
+
+                entity.Property(e => e.Particion)
+                      .HasMaxLength(100)
+                      .IsRequired();
+
+                entity.Property(e => e.Contenido)
+                      .IsRequired();
+
+                entity.Property(e => e.FechaCreacion)
+                      .HasDefaultValueSql("GETUTCDATE()")
+                      .IsRequired();
+            });
+
             modelBuilder.Entity<ActividadEconomicaEntity>(entity => {
                 entity.HasKey(e => e.Id).HasName("PK__Activida__3214EC078771ABA5");
 

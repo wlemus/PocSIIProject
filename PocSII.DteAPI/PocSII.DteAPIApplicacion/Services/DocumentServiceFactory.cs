@@ -23,7 +23,7 @@ namespace PocSII.DteAPIApplicacion.Services
         public IDocumentService GetService(DocumentType type) {
             return type switch {
                 DocumentType.Invoice => _provider.GetRequiredService<IDocumentService>(),
-                DocumentType.CreditNote => _provider.GetRequiredService<IDocumentService>(),
+              //  DocumentType.CreditNote => _provider.GetRequiredService<IDocumentService>(),
                 _ => throw new NotSupportedException("Tipo de documento no soportado")
             };
         }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace PocSII.DteAPIApplicacion.Services
 {
     public class CreditNoteService : IDocumentService {
-        public Task<Result<ElectronicDocument>> GetAsync(string folio) {
+        public Task<Result<object>> GetAsync(string folio) {
             throw new NotImplementedException();
         }
 

@@ -12,16 +12,16 @@ namespace PocSII.DteAPIApplicacion.Services
 {
    public class CompanyService: ICompanyService
     {
-        private readonly ICompanyRepository companyRepository;
-        private readonly IResolutionRepository resolutionRepository;
+        private readonly ICompanyRepository _companyRepository;
+        private readonly IResolutionRepository _resolutionRepository;
         public CompanyService(ICompanyRepository companyRepository,
             IResolutionRepository resolutionRepository) {
-            this.companyRepository = companyRepository;
-            this.resolutionRepository = resolutionRepository;
+            _companyRepository = companyRepository;
+            _resolutionRepository = resolutionRepository;
         }
 
         public async Task<CompanyDTO> GetCompanyByRut(string rut) {
-            var company = await companyRepository.GetByRut(rut);
+            var company = await _companyRepository.GetByRut(rut);
             if (company == null)
                 return null;
             
@@ -63,7 +63,7 @@ namespace PocSII.DteAPIApplicacion.Services
         }
 
         public async Task<(ResolutionDTO, FoliosInfoDTO)> GetResolutionBySucursal(Guid sucursalId, string tipoDocumento, bool Vigente) {
-            var resolutionResult = await resolutionRepository.GetBySucursal(sucursalId, tipoDocumento, true);
+            var resolutionResult = await _resolutionRepository.GetBySucursal(sucursalId, tipoDocumento, true);
             var resolutionBySucursal = resolutionResult.FirstOrDefault();
 
             if (resolutionBySucursal == null)

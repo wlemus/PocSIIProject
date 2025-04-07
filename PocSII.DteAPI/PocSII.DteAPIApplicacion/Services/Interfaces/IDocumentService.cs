@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace PocSII.DteAPIApplicacion.Services.Interfaces
 {
-   public interface IDocumentService
-    {
+   public interface IDocumentService {
+
         Task<Result<bool>> SendAsync(ElectronicDocument documentoElectronico);
-        Task<Result<ElectronicDocument>> GetAsync(string folio);
+        Task<Result<object>> GetAsync(string folio);
         Task<Result<bool>> NotifyAsync(string folio);
     }
 }

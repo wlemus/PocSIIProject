@@ -8,8 +8,10 @@ using PocSII.DteAPIApplicacion.Interfaces;
 using PocSII.DteAPIApplicacion.Mappings;
 using PocSII.DteAPIApplicacion.Services;
 using PocSII.DteAPIApplicacion.Services.Interfaces;
+using PocSII.DteAPIIDataAccess.Repositories;
 using PocSII.DteAPIInfrastructure.Context;
 using PocSII.DteAPIInfrastructure.Repositories;
+using PocSII.DteBusinessRules.Dto;
 using PocSII.DteBusinessRules.Interfaces;
 using PocSII.DteProcessor.Services;
 using System.Text;
@@ -35,6 +37,8 @@ namespace PocSII.DteAPI
             builder.Services.AddScoped<ICompanyService, CompanyService>();
             builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
             builder.Services.AddScoped<IResolutionRepository, ResolutionRepository>();
+            builder.Services.AddScoped<INonSQLRepository, DocumentoNonSQLRepository>();
+            builder.Services.AddScoped<IDocumentNonSQLService<InvoiceDTO>, InvoiceNonSQLService>();
             #endregion
 
             #region Database
