@@ -16,6 +16,8 @@ public partial class RangoFolioEntity
     public int FolioHasta { get; set; }
 
     public DateOnly FechaAutorizacion { get; set; }
+    public string CAF { get; set; }
+    public string LlavePrivadaCAF { get; set; }
 
     public bool Vigente { get; set; }
 

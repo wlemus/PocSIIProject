@@ -10,7 +10,7 @@ namespace PocSII.DteAPIApplicacion.Services.Interfaces
 {
    public interface IDocumentService {
 
-        Task<Result<bool>> SendAsync(ElectronicDocument documentoElectronico);
+        Task<Result<string>> SendAsync(ElectronicDocument documentoElectronico);
         Task<Result<object>> GetAsync(string folio);
         Task<Result<bool>> NotifyAsync(string folio);
     }

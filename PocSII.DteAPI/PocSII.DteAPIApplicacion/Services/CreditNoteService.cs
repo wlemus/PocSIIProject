@@ -18,7 +18,7 @@ namespace PocSII.DteAPIApplicacion.Services
             throw new NotImplementedException();
         }
 
-        public Task<Result<bool>> SendAsync(ElectronicDocument documentoElectronico) {
+        Task<Result<string>> IDocumentService.SendAsync(ElectronicDocument documentoElectronico) {
             throw new NotImplementedException();
         }
     }

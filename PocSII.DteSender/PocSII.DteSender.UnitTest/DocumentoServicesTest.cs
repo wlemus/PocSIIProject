@@ -82,13 +82,9 @@ namespace PocSII.DteProcessor.UnitTest {
                 },
                 FechaFirmaDoc = DateTime.Parse("2003-09-04"),
                 TimbreElectronicoInfo = new ElectronicStamp {
-                    FechaFirmaDigitalDatosAutorizacion = DateTime.Parse("2003-10-13"),
-                    LlavePublicaModuloRSA = "0a4O6Kbx8Qj3K4iWSP4w7KneZYeJ+g/prihYtIEolKt3cykSxl1zO8vSXu397QhTmsX7SBEudTUx++2zDXBhZw==",
-                    LlavePublicaExponenteRSA = "Aw==",
-                    IdLlavePublica = "100",
-                    FirmaDigitalDatosAutorizacion = "g1AQX0sy8NJugX52k2hTJEZAE9Cuul6pqYBdFxj1N17umW7zG/hAavCALKByHzdYAfZ3LhGTXCai5zNxOo4lDQ==",
-                    FechaFirmaDigitalDatoDocumento = DateTime.Parse("2003-10-13"),
-                    FirmaDigitalDatoDocumento = "GbmDcS9e/jVC2LsLIe1iRV12Bf6lxsILtbQiCkh6mbjckFCJ7fj/kakFTS06Jo8i\r\nS4HXvJj3oYZuey53Krniew=="
+                     CAF= "<CAF version=\"1.0\"><DA><RE>97975000-5</RE><RS>RUT DE PRUEBA</RS><TD>33</TD><RNG><D>1</D><H>200</H></RNG><FA>2003-09-04</FA></DA><RSAPK><M>0a4O6Kbx8Qj3K4iWSP4w7KneZYeJ+g/prihYtIEolKt3cykSxl1zO8vSXu397QhTmsX7SBEudTUx++2zDXBhZw==</M><E>Aw==</E></RSAPK></CAF>",
+                    FechaFirmaDigitalDatoDocumento = DateTime.Parse("2003-10-13"),                  
+                    FirmaElectronicaDocumento = "GbmDcS9e/jVC2LsLIe1iRV12Bf6lxsILtbQiCkh6mbjckFCJ7fj/kakFTS06Jo8i\r\nS4HXvJj3oYZuey53Krniew=="
                 },
             };
 
@@ -183,13 +179,9 @@ namespace PocSII.DteProcessor.UnitTest {
                 },
                 FechaFirmaDoc = DateTime.Parse("2003-09-04"),
                 TimbreElectronicoInfo = new ElectronicStamp {
-                    FechaFirmaDigitalDatosAutorizacion = DateTime.Parse("2003-10-13"),
-                    LlavePublicaModuloRSA = "0a4O6Kbx8Qj3K4iWSP4w7KneZYeJ+g/prihYtIEolKt3cykSxl1zO8vSXu397QhTmsX7SBEudTUx++2zDXBhZw==",
-                    LlavePublicaExponenteRSA = "Aw==",
-                    IdLlavePublica = "100",
-                    FirmaDigitalDatosAutorizacion = "g1AQX0sy8NJugX52k2hTJEZAE9Cuul6pqYBdFxj1N17umW7zG/hAavCALKByHzdYAfZ3LhGTXCai5zNxOo4lDQ==",
+                    CAF= "<CAF version=\"1.0\"><DA><RE>97975000-5</RE><RS>RUT DE PRUEBA</RS><TD>33</TD><RNG><D>1</D><H>200</H></RNG><FA>2003-09-04</FA></DA><RSAPK><M>0a4O6Kbx8Qj3K4iWSP4w7KneZYeJ+g/prihYtIEolKt3cykSxl1zO8vSXu397QhTmsX7SBEudTUx++2zDXBhZw==</M><E>Aw==</E></RSAPK></CAF>",
                     FechaFirmaDigitalDatoDocumento = DateTime.Parse("2003-10-13"),
-                    FirmaDigitalDatoDocumento = "GbmDcS9e/jVC2LsLIe1iRV12Bf6lxsILtbQiCkh6mbjckFCJ7fj/kakFTS06Jo8i\r\nS4HXvJj3oYZuey53Krniew=="
+                    FirmaElectronicaDocumento = "GbmDcS9e/jVC2LsLIe1iRV12Bf6lxsILtbQiCkh6mbjckFCJ7fj/kakFTS06Jo8i\r\nS4HXvJj3oYZuey53Krniew=="
                 },
             };
 

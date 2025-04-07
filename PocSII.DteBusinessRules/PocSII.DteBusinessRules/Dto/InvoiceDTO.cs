@@ -31,15 +31,9 @@ public string FolioInicial { get; set; }
        
     }
     public class ElectronicStamp {
-        public string LlavePublicaModuloRSA { get; set; }
-        public string LlavePublicaExponenteRSA { get; set; }
-
-        protected string LlavePrivadaModuloRSA { get; set; }
-        protected string LlavePrivadaExponenteRSA { get; set; }
-        public string IdLlavePublica { get; set; }
-        public string FirmaDigitalDatosAutorizacion { get; set; }
-        public DateTime FechaFirmaDigitalDatosAutorizacion { get; set; }
-        public string FirmaDigitalDatoDocumento { get; set; }
+        public string CAF { get; set; }
+        public string LlavePrivadaCAF { get; set; }
+        public string FirmaElectronicaDocumento { get; set; }
         public DateTime FechaFirmaDigitalDatoDocumento { get; set; }
     }
 }

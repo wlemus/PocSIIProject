@@ -118,20 +118,20 @@ namespace PocSII.DteProcessor.Mapper {
                             },
                             FA = invoiceDto.FoliosInfo.FechaAutorizacion,
                             Item = new DTEDefTypeDocumentoTEDDDCAFDARSAPK {
-                                M = Convert.FromBase64String(invoiceDto.TimbreElectronicoInfo.LlavePublicaModuloRSA),
-                                E = Convert.FromBase64String(invoiceDto.TimbreElectronicoInfo.LlavePublicaExponenteRSA)
+                                M = Convert.FromBase64String("0a4O6Kbx8Qj3K4iWSP4w7KneZYeJ+g/prihYtIEolKt3cykSxl1zO8vSXu397QhTmsX7SBEudTUx++2zDXBhZw=="),
+                                E = Convert.FromBase64String("Aw==")
                             },
-                            IDK = Convert.ToInt64(invoiceDto.TimbreElectronicoInfo.IdLlavePublica)
+                            IDK = 100
                         },
                         FRMA = new DTEDefTypeDocumentoTEDDDCAFFRMA {
                             algoritmo = "SHA1withRSA",
-                            Value = Convert.FromBase64String(invoiceDto.TimbreElectronicoInfo.FirmaDigitalDatosAutorizacion)
+                            Value = Convert.FromBase64String("g1AQX0sy8NJugX52k2hTJEZAE9Cuul6pqYBdFxj1N17umW7zG/hAavCALKByHzdYAfZ3LhGTXCai5zNxOo4lDQ==")
                         }
                     },
-                    TSTED = invoiceDto.TimbreElectronicoInfo.FechaFirmaDigitalDatosAutorizacion
+                    TSTED = invoiceDto.TimbreElectronicoInfo.FechaFirmaDigitalDatoDocumento
                 },
                 FRMT = new DTEDefTypeDocumentoTEDFRMT {
-                    Value = Convert.FromBase64String(invoiceDto.TimbreElectronicoInfo.FirmaDigitalDatoDocumento)
+                    Value = Convert.FromBase64String(invoiceDto.TimbreElectronicoInfo.FirmaElectronicaDocumento)
                 }
                 };
 

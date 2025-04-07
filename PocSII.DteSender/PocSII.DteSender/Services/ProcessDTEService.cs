@@ -18,19 +18,23 @@ namespace PocSII.DteProcessor.Services
             _dteSender = dteSender;
         }
        
-        public async Task<Result<DTEResultSendDTO>> SendTaxService(InvoiceDTO factura) {
+        public async Task<Result<DTEResultSendDTO>> SendTaxService(InvoiceDTO invoice) {
 
             DTEResultSendDTO respEnvio =null;
             Result<DTEResponseReception> sendDteXmlAsyncResult = null;
             string xmlSerialized = string.Empty;
             try {
+                //PASO 1: Sellar documento
+                invoice.TimbreElectronicoInfo.FechaFirmaDigitalDatoDocumento = DateTime.Now;
+               invoice.TimbreElectronicoInfo.FirmaElectronicaDocumento= ElectronicStampService.SingDDNode(invoice);
 
-            //PASO 1: Mapear el DTO a la entidad DTE
-            var envioDTE =  FacturaDTEMapper.MapToEnvioDTE(factura);     
-                
-            //PASO 2: Firmar el archivo TODO
-            // Aquí deberías implementar la lógica para firmar el XML
-            envioDTE.SetDTE.Caratula.TmstFirmaEnv = DateTime.Now;
+                //PASO 2: Mapear el DTO a la entidad DTE
+                var envioDTE =  FacturaDTEMapper.MapToEnvioDTE(invoice);
+
+                //PASO 3:  Firmar el archivo TODO
+            
+                // Aquí deberías implementar la lógica para firmar el XML
+                envioDTE.SetDTE.Caratula.TmstFirmaEnv = DateTime.Now;
 
             //PASO 3: Serializar el DTE a XML
             xmlSerialized = XmlHelper.SerializeToXml(envioDTE);
@@ -42,7 +46,7 @@ namespace PocSII.DteProcessor.Services
                 return   Result<DTEResultSendDTO>.Failure(validateXmlResult.Error);
 
             //PASO 5: Enviar el XML al servicio web
-             sendDteXmlAsyncResult = await _dteSender.SendDteXmlAsync(xmlSerialized, Environment.GetEnvironmentVariable("SII_ENDPOINT_ENVIO"));
+             sendDteXmlAsyncResult = await _dteSender.SendDteXmlAsync(invoice.Factura.Folio, xmlSerialized, Environment.GetEnvironmentVariable("SII_ENDPOINT_ENVIO"));
 
             } catch (Exception ex) {
 
@@ -52,14 +56,18 @@ namespace PocSII.DteProcessor.Services
           
 
             if (sendDteXmlAsyncResult.IsSuccess) {
-                    respEnvio = new DTEResultSendDTO {
-                        TrackID = sendDteXmlAsyncResult.Value.TrackId,
-                        XMLSent = xmlSerialized,
-                        ReceptionDate = Convert.ToDateTime(sendDteXmlAsyncResult.Value.Timestamp)
-                    };
 
-                } else {
-                    switch (sendDteXmlAsyncResult.Value.Status) {
+                switch (sendDteXmlAsyncResult.Value.Status) {
+                    case 0: {
+                            // El envío fue exitoso
+                            // Se procesar la respuesta y devuelve el resultado
+                            // Por ejemplo, puedes guardar el TrackID y la fecha de recepción en tu base de datos
+                            respEnvio = new DTEResultSendDTO {
+                                TrackID = sendDteXmlAsyncResult.Value.TrackId,
+                                XMLSent = xmlSerialized,
+                                ReceptionDate = Convert.ToDateTime(DateTime.Now)
+                            };
+                        } break;
                         case 1:
                             throw new DTESentException(DTESendStatus.SenderSinPermiso, sendDteXmlAsyncResult.Value);
                         case 2:

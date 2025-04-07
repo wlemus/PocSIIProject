@@ -12,6 +12,7 @@
     <PackageReference Include="FluentValidation" Version="11.11.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.3" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.3" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="9.0.3" />
     <Reference Include="PocSII.DteBusinessRules">
       <HintPath>libs\PocSII.DteBusinessRules.dll</HintPath>
       <Private>True</Private>

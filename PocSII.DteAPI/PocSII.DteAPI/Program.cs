@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using PocSII.DteAPI.Common;
 using PocSII.DteAPIApplicacion.Common;
+using PocSII.DteAPIApplicacion.DTOs;
 using PocSII.DteAPIApplicacion.Interfaces;
 using PocSII.DteAPIApplicacion.Mappings;
 using PocSII.DteAPIApplicacion.Services;
@@ -38,7 +39,7 @@ namespace PocSII.DteAPI
             builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
             builder.Services.AddScoped<IResolutionRepository, ResolutionRepository>();
             builder.Services.AddScoped<INonSQLRepository, DocumentoNonSQLRepository>();
-            builder.Services.AddScoped<IDocumentNonSQLService<InvoiceDTO>, InvoiceNonSQLService>();
+            builder.Services.AddScoped<IDocumentNonSQLService<InvoiceFullDTO>, InvoiceNonSQLService>();
             #endregion
 
             #region Database
