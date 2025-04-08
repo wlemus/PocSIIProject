@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PocSII.DteAPI.Controllers.Auth;
 using PocSII.DteAPIApplicacion.DTOs;
 using PocSII.DteAPIApplicacion.Services;
@@ -11,6 +12,7 @@ using System.Text.Json;
 
 namespace PocSII.DteAPI.Controllers
 {
+    [Authorize]
     [Route("api/v1/dte")]
     [ApiController]
     public class FacturasController : ControllerBase
@@ -21,7 +23,7 @@ namespace PocSII.DteAPI.Controllers
             _logger = logger;
            _documentServiceFactory = documentServiceFactory;
         }
-        // POST api/<FacturasController>
+      
         [HttpPost("generar")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(MensajeError), StatusCodes.Status400BadRequest)]

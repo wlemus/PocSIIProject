@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using PatronesTest.PubSub;
 using PocSII.DteAPIApplicacion.DTOs;
 using PocSII.DteAPIApplicacion.Enumerables;
 using PocSII.DteAPIApplicacion.Services.Interfaces;
@@ -9,6 +11,7 @@ using PocSII.DteBusinessRules.Dto;
 using PocSII.DteBusinessRules.Enums;
 using PocSII.DteBusinessRules.Exceptions;
 using PocSII.DteBusinessRules.Interfaces;
+using PocSII.DteComunicaciones;
 using PocSII.DteProcessor.Services;
 using System;
 using System.Collections.Concurrent;
@@ -26,12 +29,14 @@ namespace PocSII.DteAPIApplicacion.Services
         private readonly ILogger<InvoiceService> _logger;
         private readonly IDocumentNonSQLService<InvoiceFullDTO> _invoiceNonSQLService;
         private readonly IProcessDocumentService _processDTEService;
+        private readonly PublisherNotification _publisherNotification;
         public InvoiceService(IMapper mapper, ICompanyService companyService, IProcessDocumentService processDTEService, 
-            IDocumentNonSQLService<InvoiceFullDTO> invoiceNonSQLService, ILogger<InvoiceService> logger) {
+            IDocumentNonSQLService<InvoiceFullDTO> invoiceNonSQLService, PublisherNotification publisherNotification, ILogger<InvoiceService> logger) {
             _mapper = mapper;
             _processDTEService = processDTEService;
             _companyService = companyService;
             _invoiceNonSQLService = invoiceNonSQLService;
+            _publisherNotification = publisherNotification;
             _logger = logger;
         }
 
@@ -41,23 +46,21 @@ namespace PocSII.DteAPIApplicacion.Services
             return Result<object>.Success(result);
         }
         public async Task<Result<object>> GetStatusAsync(string folio) {
-            try {
+          
 
                 var resultGetTaxService = await _processDTEService.GetTaxService( new InvoiceDTO { Factura = new Invoice { Folio = folio } });
 
-                if (!resultGetTaxService.IsSuccess)
-                    return Result<object>.Failure("Error en el envio del documento", resultGetTaxService.Error);
-              
+                if (resultGetTaxService.IsSuccess)
+                return Result<object>.Failure(resultGetTaxService.Error);
 
-                return Result<object>.Success(resultGetTaxService.Value);
+            return Result<object>.Success(resultGetTaxService.Value);
 
-            } catch (Exception) {
-
-                throw;
-            }
         }
         public async Task<Result<string>> SendAsync(ElectronicDocument documentoElectronico) {
-           
+            //Crear suscripciones al publicador
+            //SubscriptorEmailNotification suscriptor = new SubscriptorEmailNotification("send DTE");
+            //suscriptor.suscribe(_publisherNotification);
+
             //STEP 1: Map the ElectronicDocument to Invoice
             Invoice invoice = _mapper.Map<Invoice>(documentoElectronico);
 
@@ -82,6 +85,8 @@ namespace PocSII.DteAPIApplicacion.Services
                 var invoiceFullDTO = new InvoiceFullDTO { DTE = invoiceDTO, respuestaSII = resultSendTaxService.Value };
                 //STEP 7: Notify the user
                 SaveDatabase(invoiceFullDTO);
+
+               _publisherNotification.SendMessage(new Notification {  Asunto = "¡Proceso completado con éxito!", Destinatarios= new List<string> { "developer.wlemus@gmail.com" }, Contenido="Su documento ha sido enviado" });
 
                 return Result<string>.Success($"DTE enviado y registrado con éxito, trackId:{resultSendTaxService.Value.TrackID.ToString()}");
 

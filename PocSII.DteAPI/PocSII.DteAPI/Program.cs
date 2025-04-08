@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using PatronesTest.PubSub;
 using PocSII.DteAPI.Common;
 using PocSII.DteAPIApplicacion.Common;
 using PocSII.DteAPIApplicacion.DTOs;
@@ -14,6 +15,7 @@ using PocSII.DteAPIInfrastructure.Context;
 using PocSII.DteAPIInfrastructure.Repositories;
 using PocSII.DteBusinessRules.Dto;
 using PocSII.DteBusinessRules.Interfaces;
+using PocSII.DteComunicaciones;
 using PocSII.DteProcessor.Services;
 using System.Text;
 
@@ -41,8 +43,24 @@ namespace PocSII.DteAPI
             builder.Services.AddScoped<IResolutionRepository, ResolutionRepository>();
             builder.Services.AddScoped<INonSQLRepository, DocumentoNonSQLRepository>();
             builder.Services.AddScoped<IDocumentNonSQLService<InvoiceFullDTO>, InvoiceNonSQLService>();
+
+
             #endregion
 
+            #region "Publicador/suscriptor"
+
+
+            // Forzar la inicialización del suscriptor para que se registre al evento
+            builder.Services.AddSingleton<PublisherNotification>();
+
+            builder.Services.AddSingleton<SubscriptorEmailNotification>(sp => {
+                // Aquí nos aseguramos de que se suscriba al publicador
+                var publisher = sp.GetRequiredService<PublisherNotification>();
+                var subscriber = new SubscriptorEmailNotification("Notificación vía Correo electrónico");
+                subscriber.Suscribe(publisher);
+                return subscriber;
+            });
+            #endregion
             #region Database
 
             builder.Services.AddDbContext<PocSIIDbContext>(options =>
@@ -89,7 +107,17 @@ namespace PocSII.DteAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            #region "Email configuration"
+            builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
+
+            #endregion
             var app = builder.Build();
+
+            using (var scope = app.Services.CreateScope()) {
+                // Forzamos la resolución del suscriptor para que se registre al publisher
+                var _ = scope.ServiceProvider.GetRequiredService<SubscriptorEmailNotification>();
+            }
+
             #region Environment Variable
             var siiSettingsSection = builder.Configuration.GetSection("SiiSettings");
             var siiSettings = siiSettingsSection.Get<SiiSettings>();
