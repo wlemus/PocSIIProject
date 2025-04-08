@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\certificate.pem" />
+    <None Remove="Resources\private_key.pem" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Interfaces\" />
     <Folder Include="libs\" />
     <PackageReference Include="FluentValidation" Version="11.11.0" />
@@ -17,6 +22,8 @@
       <HintPath>libs\PocSII.DteBusinessRules.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <EmbeddedResource Include="Resources\certificate.pem" />
+    <EmbeddedResource Include="Resources\private_key.pem" />
 	  <None Update="libs\BusinessRules.dll">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>

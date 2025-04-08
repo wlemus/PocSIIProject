@@ -18,7 +18,7 @@ namespace PocSII.DteProcessor.Services
             _httpClient = httpClient;
         }
 
-        public async Task<Result<DTEResponseReception>> SendDteXmlAsync( string folio, string xmlContent, string endpointUrl) {
+        public async Task<Result<DTEResponseReception>> SendDteXmlAsync( string folio,  string endpointUrl) {
             try {
                 using var form = new MultipartFormDataContent();
                 form.Add(new StringContent(folio), "folio");
@@ -40,18 +40,17 @@ namespace PocSII.DteProcessor.Services
                 using var reader = new StringReader(xml);
                 var parsed = (DTEResponseReception)serializer.Deserialize(reader);
 
-                //var result = new DTEResponseReception {
-                //    RutSender = "97975000-5",
-                //    RutCompany = "60803000-K",
-                //    File = "ENVFIN_100_sign.xml",
-                //    Timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                //    Status = 0,
-                //    TrackId = 39
-                //  };
+                if (parsed == null) {
+
+                    parsed = new DTEResponseReception {                       
+                        Status = 7
+                    };
+                }
                 return Result<DTEResponseReception>.Success(parsed);
 
             } catch (Exception ex) {
-                return Result<DTEResponseReception>.Failure($"Excepción al enviar XML: {ex.Message}");
+                
+                return Result<DTEResponseReception>.Failure($"Excepción al enviar DTE al SII: {ex.Message}");
             }
         }
     }

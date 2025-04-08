@@ -33,6 +33,7 @@ namespace PocSII.DteAPI
             builder.Services.AddScoped<IDocumentService, InvoiceService>();
             builder.Services.AddScoped<DocumentServiceFactory>();
             builder.Services.AddHttpClient<DteSenderService>();
+            builder.Services.AddHttpClient<DteQueryService>();
             builder.Services.AddScoped<IProcessDocumentService, ProcessDTEService>();
 
             builder.Services.AddScoped<ICompanyService, CompanyService>();

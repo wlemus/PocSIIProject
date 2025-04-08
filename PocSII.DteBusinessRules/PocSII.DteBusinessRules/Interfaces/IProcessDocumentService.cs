@@ -1,4 +1,5 @@
 ﻿using PocSII.DteBusinessRules.Common;
+using PocSII.DteBusinessRules.Domain;
 using PocSII.DteBusinessRules.Dto;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,9 @@ namespace PocSII.DteBusinessRules.Interfaces
 {
     public interface IProcessDocumentService
     {
-        Task<Result<DTEResultSendDTO>> SendTaxService(InvoiceDTO factura);
-        Task<Result<bool>> NotifySubmission(InvoiceDTO factura);
+        Task<Result<DTEResultSendDTO>> SendTaxService(InvoiceDTO invoice);
+
+        Task<Result<DTEResponseQuery>> GetTaxService(InvoiceDTO invoice);
+        Task<Result<bool>> NotifySubmission(InvoiceDTO invoice);
     }
 }

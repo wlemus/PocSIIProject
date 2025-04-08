@@ -35,6 +35,27 @@ namespace PocSII.DteAPIApplicacion.Services
             _logger = logger;
         }
 
+        public async Task<Result<object>> GetAsync(string folio) {
+            string container = DocumentContainer.Invoice.GetDescription();
+            var result = await _invoiceNonSQLService.Get(folio, container, "76999999-1"); //TODO: OBTENER DE LOS CLAIMS
+            return Result<object>.Success(result);
+        }
+        public async Task<Result<object>> GetStatusAsync(string folio) {
+            try {
+
+                var resultGetTaxService = await _processDTEService.GetTaxService( new InvoiceDTO { Factura = new Invoice { Folio = folio } });
+
+                if (!resultGetTaxService.IsSuccess)
+                    return Result<object>.Failure("Error en el envio del documento", resultGetTaxService.Error);
+              
+
+                return Result<object>.Success(resultGetTaxService.Value);
+
+            } catch (Exception) {
+
+                throw;
+            }
+        }
         public async Task<Result<string>> SendAsync(ElectronicDocument documentoElectronico) {
            
             //STEP 1: Map the ElectronicDocument to Invoice
@@ -138,11 +159,7 @@ namespace PocSII.DteAPIApplicacion.Services
                 Receptor = recieverCompany
             };
         }
-        public async Task<Result<object>> GetAsync(string folio) {
-            string container = DocumentContainer.Invoice.GetDescription();
-            var result = await _invoiceNonSQLService.Get(folio, container, "76999999-1"); //TODO: OBTENER DE LOS CLAIMS
-            return Result<object>.Success(result);
-        }
+       
 
         public Task<Result<bool>> NotifyAsync(string folio) {
             throw new NotImplementedException();

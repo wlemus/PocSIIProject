@@ -14,6 +14,10 @@ namespace PocSII.DteAPIApplicacion.Services
             throw new NotImplementedException();
         }
 
+        public Task<Result<object>> GetStatusAsync(string folio) {
+            throw new NotImplementedException();
+        }
+
         public Task<Result<bool>> NotifyAsync(string folio) {
             throw new NotImplementedException();
         }

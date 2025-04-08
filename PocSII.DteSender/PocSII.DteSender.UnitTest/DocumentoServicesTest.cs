@@ -88,11 +88,13 @@ namespace PocSII.DteProcessor.UnitTest {
                 },
             };
 
-            Environment.SetEnvironmentVariable("SII_ENDPOINT_ENVIO", "https://localhost/sii/dte/envio");
+            Environment.SetEnvironmentVariable("SII_ENDPOINT_ENVIO", "http://localhost:8080/cgi_dte/UPL/DTEUpload");
 
             var _dteSender = new DteSenderService( new HttpClient());
 
-            var service = new ProcessDTEService(_dteSender); // Asumiendo constructor sin dependencias
+        var dteQueryService = new DteQueryService(new HttpClient());
+
+            var service = new ProcessDTEService(_dteSender, dteQueryService); // Asumiendo constructor sin dependencias
 
             // Act
             var result = await service.SendTaxService(factura);
@@ -101,8 +103,29 @@ namespace PocSII.DteProcessor.UnitTest {
             Assert.True(result.IsSuccess);
             Assert.NotNull(result.Value.TrackID);
         }
+        [Fact]
+        public async Task GetTaxService_ReturnsSuccess() {
+            var factura = new InvoiceDTO {
+                Factura = new Invoice {
+                    Folio = "100"
+                }
+            };
+            
 
+            Environment.SetEnvironmentVariable("SII_ENDPOINT_CONSULTA", "http://localhost:8080/DTEWS/QueryEstDte");
 
+            var _dteSender = new DteSenderService(new HttpClient());
+
+            var dteQueryService = new DteQueryService(new HttpClient());
+
+            var service = new ProcessDTEService(_dteSender, dteQueryService); // Asumiendo constructor sin dependencias
+
+            // Act
+            var result = await service.GetTaxService(factura);
+
+            // Assert
+            Assert.True(result.IsSuccess);
+        }
         [Fact]
         public async Task SendTaxSerice_WithValidFactura_ReturnsInvalidXSD() {
             // Arrange
@@ -188,8 +211,9 @@ namespace PocSII.DteProcessor.UnitTest {
             Environment.SetEnvironmentVariable("SII_ENDPOINT_ENVIO", "https://localhost/sii/dte/envio");
 
             var _dteSender = new DteSenderService(new HttpClient());
+            var dteQueryService = new DteQueryService(new HttpClient());
 
-            var service = new ProcessDTEService(_dteSender); // Asumiendo constructor sin dependencias
+            var service = new ProcessDTEService(_dteSender, dteQueryService); // Asumiendo constructor sin dependencias
 
             // Act
             var result = await service.SendTaxService(factura);

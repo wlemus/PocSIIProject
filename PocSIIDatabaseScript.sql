@@ -37,7 +37,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Ciudad]    Script Date: 7/04/2025 8:42:39 a. m. ******/
+/****** Object:  Table [dbo].[Ciudad]    Script Date: 7/04/2025 8:54:43 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -52,7 +52,24 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Empresa]    Script Date: 7/04/2025 8:42:39 a. m. ******/
+/****** Object:  Table [dbo].[DocumentoNonSQL]    Script Date: 7/04/2025 8:54:43 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DocumentoNonSQL](
+	[Id] [nvarchar](50) NOT NULL,
+	[Contenedor ] [nvarchar](100) NOT NULL,
+	[Particion] [nvarchar](100) NOT NULL,
+	[Contenido] [nvarchar](max) NOT NULL,
+	[FechaCreacion] [datetime2](7) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Empresa]    Script Date: 7/04/2025 8:54:43 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -77,7 +94,7 @@ CREATE TABLE [dbo].[Empresa](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[EmpresaActeco]    Script Date: 7/04/2025 8:42:39 a. m. ******/
+/****** Object:  Table [dbo].[EmpresaActeco]    Script Date: 7/04/2025 8:54:43 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -97,7 +114,7 @@ CREATE TABLE [dbo].[EmpresaActeco](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[EmpresaTelefono]    Script Date: 7/04/2025 8:42:39 a. m. ******/
+/****** Object:  Table [dbo].[EmpresaTelefono]    Script Date: 7/04/2025 8:54:43 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -117,24 +134,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FacturasCosmosDB]    Script Date: 7/04/2025 8:42:39 a. m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[FacturasCosmosDB](
-	[Id] [nvarchar](50) NOT NULL,
-	[Tipo] [nvarchar](100) NOT NULL,
-	[Particion] [nvarchar](100) NOT NULL,
-	[Contenido] [nvarchar](max) NOT NULL,
-	[FechaCreacion] [datetime2](7) NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Pais]    Script Date: 7/04/2025 8:42:39 a. m. ******/
+/****** Object:  Table [dbo].[Pais]    Script Date: 7/04/2025 8:54:43 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -149,7 +149,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RangoFolio]    Script Date: 7/04/2025 8:42:39 a. m. ******/
+/****** Object:  Table [dbo].[RangoFolio]    Script Date: 7/04/2025 8:54:43 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -161,6 +161,8 @@ CREATE TABLE [dbo].[RangoFolio](
 	[FolioDesde] [int] NOT NULL,
 	[FolioHasta] [int] NOT NULL,
 	[FechaAutorizacion] [date] NOT NULL,
+	[CAF] [varchar](max) NULL,
+	[LlavePrivadaCAF] [text] NULL,
 	[Vigente] [bit] NOT NULL,
 	[FechaCreacion] [datetime2](7) NOT NULL,
 	[CreadoPor] [nvarchar](100) NOT NULL,
@@ -171,9 +173,9 @@ CREATE TABLE [dbo].[RangoFolio](
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ResolucionDTE]    Script Date: 7/04/2025 8:42:39 a. m. ******/
+/****** Object:  Table [dbo].[ResolucionDTE]    Script Date: 7/04/2025 8:54:43 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -195,7 +197,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Sucursal]    Script Date: 7/04/2025 8:42:39 a. m. ******/
+/****** Object:  Table [dbo].[Sucursal]    Script Date: 7/04/2025 8:54:43 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -219,7 +221,7 @@ CREATE TABLE [dbo].[Sucursal](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TipoDocumento]    Script Date: 7/04/2025 8:42:39 a. m. ******/
+/****** Object:  Table [dbo].[TipoDocumento]    Script Date: 7/04/2025 8:54:43 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -435,17 +437,69 @@ SET IDENTITY_INSERT [dbo].[EmpresaTelefono] OFF
 GO
 INSERT [dbo].[Pais] ([Id], [Nombre], [ISO]) VALUES (N'f31159de-08f3-46a2-95df-ebc164107478', N'Chile', N'CHL')
 GO
-INSERT [dbo].[RangoFolio] ([Id], [ResolucionId], [TipoDocumentoCodigo], [FolioDesde], [FolioHasta], [FechaAutorizacion], [Vigente], [FechaCreacion], [CreadoPor], [FechaModificacion], [ModificadoPor], [Activo]) VALUES (N'dc9e5738-5ceb-4dfc-919c-0026dd1bd835', N'e222f5e7-7c0a-455a-96d5-f05db9d0baac', N'33', 1000, 80000, CAST(N'2023-04-05' AS Date), 1, CAST(N'2025-04-05T23:21:46.2605985' AS DateTime2), N'DESKTOP-UNJOHJJ\Sonic', NULL, NULL, 1)
+INSERT [dbo].[RangoFolio] ([Id], [ResolucionId], [TipoDocumentoCodigo], [FolioDesde], [FolioHasta], [FechaAutorizacion], [CAF], [LlavePrivadaCAF], [Vigente], [FechaCreacion], [CreadoPor], [FechaModificacion], [ModificadoPor], [Activo]) VALUES (N'dc9e5738-5ceb-4dfc-919c-0026dd1bd835', N'e222f5e7-7c0a-455a-96d5-f05db9d0baac', N'33', 1000, 80000, CAST(N'2023-04-05' AS Date), N'<CAF version="1.0">
+					<DA>
+						<RE>97975000-5</RE>
+						<RS>RUT DE PRUEBA</RS>
+						<TD>33</TD>
+						<RNG>
+							<D>1</D>
+							<H>200</H>
+						</RNG>
+						<FA>2003-09-04</FA>
+						<RSAPK>
+							<M>0a4O6Kbx8Qj3K4iWSP4w7KneZYeJ+g/prihYtIEolKt3cykSxl1zO8vSXu397QhTmsX7SBEudTUx++2zDXBhZw==</M>
+							<E>Aw==</E>
+						</RSAPK>
+						<IDK>100</IDK>
+					</DA>
+					<FRMA algoritmo="SHA1withRSA">g1AQX0sy8NJugX52k2hTJEZAE9Cuul6pqYBdFxj1N17umW7zG/hAavCALKByHzdYAfZ3LhGTXCai5zNxOo4lDQ==</FRMA>
+				</CAF>', N'<RSAKeyValue>
+  <Modulus>vT8WsMZ1D3u4Wn+GqUnN0dYF/5rL9oXtR1D5...</Modulus>
+  <Exponent>AQAB</Exponent>
+  <P>9ZJ7e6qMjaIbAqO0BQ9P...</P>
+  <Q>x6/Zo8YStnVzF8E5Rc0N...</Q>
+  <DP>RiVPXQhLqtPliZ4oI8ER...</DP>
+  <DQ>MyVJfWzLQsy2R+v6+/kQ...</DQ>
+  <InverseQ>JcXJpAo5vIx7l3gOaTLN...</InverseQ>
+  <D>XjGzpNmGDK6o8ILytDkZ...</D>
+</RSAKeyValue>', 1, CAST(N'2025-04-05T23:21:46.2605985' AS DateTime2), N'DESKTOP-UNJOHJJ\Sonic', NULL, NULL, 1)
 GO
-INSERT [dbo].[RangoFolio] ([Id], [ResolucionId], [TipoDocumentoCodigo], [FolioDesde], [FolioHasta], [FechaAutorizacion], [Vigente], [FechaCreacion], [CreadoPor], [FechaModificacion], [ModificadoPor], [Activo]) VALUES (N'61677787-d39f-4080-9bfb-3cadde90455b', N'165ffedd-443c-473b-a073-ad8975f3fce0', N'33', 1, 10000, CAST(N'2020-10-02' AS Date), 1, CAST(N'2025-04-05T23:20:38.1701502' AS DateTime2), N'DESKTOP-UNJOHJJ\Sonic', NULL, NULL, 1)
+INSERT [dbo].[RangoFolio] ([Id], [ResolucionId], [TipoDocumentoCodigo], [FolioDesde], [FolioHasta], [FechaAutorizacion], [CAF], [LlavePrivadaCAF], [Vigente], [FechaCreacion], [CreadoPor], [FechaModificacion], [ModificadoPor], [Activo]) VALUES (N'61677787-d39f-4080-9bfb-3cadde90455b', N'165ffedd-443c-473b-a073-ad8975f3fce0', N'33', 1, 10000, CAST(N'2020-10-02' AS Date), N'<CAF version="1.0">
+					<DA>
+						<RE>97975000-5</RE>
+						<RS>RUT DE PRUEBA</RS>
+						<TD>33</TD>
+						<RNG>
+							<D>1</D>
+							<H>200</H>
+						</RNG>
+						<FA>2003-09-04</FA>
+						<RSAPK>
+							<M>0a4O6Kbx8Qj3K4iWSP4w7KneZYeJ+g/prihYtIEolKt3cykSxl1zO8vSXu397QhTmsX7SBEudTUx++2zDXBhZw==</M>
+							<E>Aw==</E>
+						</RSAPK>
+						<IDK>100</IDK>
+					</DA>
+					<FRMA algoritmo="SHA1withRSA">g1AQX0sy8NJugX52k2hTJEZAE9Cuul6pqYBdFxj1N17umW7zG/hAavCALKByHzdYAfZ3LhGTXCai5zNxOo4lDQ==</FRMA>
+				</CAF>', N'<RSAKeyValue>
+  <Modulus>vT8WsMZ1D3u4Wn+GqUnN0dYF/5rL9oXtR1D5...</Modulus>
+  <Exponent>AQAB</Exponent>
+  <P>9ZJ7e6qMjaIbAqO0BQ9P...</P>
+  <Q>x6/Zo8YStnVzF8E5Rc0N...</Q>
+  <DP>RiVPXQhLqtPliZ4oI8ER...</DP>
+  <DQ>MyVJfWzLQsy2R+v6+/kQ...</DQ>
+  <InverseQ>JcXJpAo5vIx7l3gOaTLN...</InverseQ>
+  <D>XjGzpNmGDK6o8ILytDkZ...</D>
+</RSAKeyValue>', 1, CAST(N'2025-04-05T23:20:38.1701502' AS DateTime2), N'DESKTOP-UNJOHJJ\Sonic', NULL, NULL, 1)
 GO
 INSERT [dbo].[ResolucionDTE] ([Id], [Numero], [Fecha], [SucursalId], [Observaciones], [FechaCreacion], [CreadoPor], [FechaModificacion], [ModificadoPor], [Activo]) VALUES (N'165ffedd-443c-473b-a073-ad8975f3fce0', 45, CAST(N'2023-04-05' AS Date), N'56e91795-ab7c-480b-b7d8-478f18f6f83b', NULL, CAST(N'2025-04-05T23:16:53.8581979' AS DateTime2), N'DESKTOP-UNJOHJJ\Sonic', NULL, NULL, 1)
 GO
 INSERT [dbo].[ResolucionDTE] ([Id], [Numero], [Fecha], [SucursalId], [Observaciones], [FechaCreacion], [CreadoPor], [FechaModificacion], [ModificadoPor], [Activo]) VALUES (N'e222f5e7-7c0a-455a-96d5-f05db9d0baac', 500, CAST(N'2020-10-02' AS Date), N'bf1293a0-9b57-4fed-bf20-8b18d1fd9b1c', NULL, CAST(N'2025-04-05T23:17:22.8088942' AS DateTime2), N'DESKTOP-UNJOHJJ\Sonic', NULL, NULL, 1)
 GO
-INSERT [dbo].[Sucursal] ([Id], [EmpresaId], [CodigoSIISucursal], [NombreSucursal], [Direccion], [Comuna], [CiudadId], [FechaCreacion], [CreadoPor], [FechaModificacion], [ModificadoPor], [Activo]) VALUES (N'56e91795-ab7c-480b-b7d8-478f18f6f83b', N'038b112c-3666-43a6-91fe-184bcacdea12', N'CENTRAL', N'Sede Central', NULL, NULL, NULL, CAST(N'2025-04-05T23:12:41.9553928' AS DateTime2), N'DESKTOP-UNJOHJJ\Sonic', NULL, NULL, 1)
+INSERT [dbo].[Sucursal] ([Id], [EmpresaId], [CodigoSIISucursal], [NombreSucursal], [Direccion], [Comuna], [CiudadId], [FechaCreacion], [CreadoPor], [FechaModificacion], [ModificadoPor], [Activo]) VALUES (N'56e91795-ab7c-480b-b7d8-478f18f6f83b', N'038b112c-3666-43a6-91fe-184bcacdea12', N'1100', N'Sede Central', NULL, NULL, NULL, CAST(N'2025-04-05T23:12:41.9553928' AS DateTime2), N'DESKTOP-UNJOHJJ\Sonic', NULL, NULL, 1)
 GO
-INSERT [dbo].[Sucursal] ([Id], [EmpresaId], [CodigoSIISucursal], [NombreSucursal], [Direccion], [Comuna], [CiudadId], [FechaCreacion], [CreadoPor], [FechaModificacion], [ModificadoPor], [Activo]) VALUES (N'bf1293a0-9b57-4fed-bf20-8b18d1fd9b1c', N'ebe27048-fa47-459a-b5aa-515f19153815', N'PPAL', N'Principal', NULL, NULL, NULL, CAST(N'2025-04-05T23:11:54.8551096' AS DateTime2), N'DESKTOP-UNJOHJJ\Sonic', NULL, NULL, 1)
+INSERT [dbo].[Sucursal] ([Id], [EmpresaId], [CodigoSIISucursal], [NombreSucursal], [Direccion], [Comuna], [CiudadId], [FechaCreacion], [CreadoPor], [FechaModificacion], [ModificadoPor], [Activo]) VALUES (N'bf1293a0-9b57-4fed-bf20-8b18d1fd9b1c', N'ebe27048-fa47-459a-b5aa-515f19153815', N'1101', N'Principal', NULL, NULL, NULL, CAST(N'2025-04-05T23:11:54.8551096' AS DateTime2), N'DESKTOP-UNJOHJJ\Sonic', NULL, NULL, 1)
 GO
 INSERT [dbo].[TipoDocumento] ([Codigo], [Nombre], [Descripcion], [FechaCreacion], [CreadoPor], [FechaModificacion], [ModificadoPor], [Activo]) VALUES (N'110', N'Factura de Compra Electrónica', N'Factura emitida por un comprador que adquiere bienes a personas sin inicio de actividades', CAST(N'2025-04-05T22:25:56.0872647' AS DateTime2), N'DESKTOP-UNJOHJJ\Sonic', NULL, NULL, 1)
 GO
@@ -469,7 +523,7 @@ INSERT [dbo].[TipoDocumento] ([Codigo], [Nombre], [Descripcion], [FechaCreacion]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IDX_ActividadEconomica_Codigo]    Script Date: 7/04/2025 8:42:39 a. m. ******/
+/****** Object:  Index [IDX_ActividadEconomica_Codigo]    Script Date: 7/04/2025 8:54:43 p. m. ******/
 CREATE UNIQUE NONCLUSTERED INDEX [IDX_ActividadEconomica_Codigo] ON [dbo].[ActividadEconomica]
 (
 	[Codigo] ASC
@@ -477,13 +531,15 @@ CREATE UNIQUE NONCLUSTERED INDEX [IDX_ActividadEconomica_Codigo] ON [dbo].[Activ
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Empresa]    Script Date: 7/04/2025 8:42:39 a. m. ******/
+/****** Object:  Index [IX_Empresa]    Script Date: 7/04/2025 8:54:43 p. m. ******/
 ALTER TABLE [dbo].[Empresa] ADD  CONSTRAINT [IX_Empresa] UNIQUE NONCLUSTERED 
 (
 	[Rut] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 GO
 ALTER TABLE [dbo].[ActividadEconomica] ADD  DEFAULT (newid()) FOR [Id]
+GO
+ALTER TABLE [dbo].[DocumentoNonSQL] ADD  DEFAULT (getutcdate()) FOR [FechaCreacion]
 GO
 ALTER TABLE [dbo].[Empresa] ADD  CONSTRAINT [DF__Empresa__Id__403A8C7D]  DEFAULT (newid()) FOR [Id]
 GO
@@ -505,15 +561,13 @@ ALTER TABLE [dbo].[EmpresaTelefono] ADD  DEFAULT (suser_sname()) FOR [CreadoPor]
 GO
 ALTER TABLE [dbo].[EmpresaTelefono] ADD  DEFAULT ((1)) FOR [Activo]
 GO
-ALTER TABLE [dbo].[FacturasCosmosDB] ADD  DEFAULT (getutcdate()) FOR [FechaCreacion]
-GO
 ALTER TABLE [dbo].[RangoFolio] ADD  CONSTRAINT [DF__RangoFolio__Id__571DF1D5]  DEFAULT (newid()) FOR [Id]
 GO
-ALTER TABLE [dbo].[RangoFolio] ADD  DEFAULT (sysdatetime()) FOR [FechaCreacion]
+ALTER TABLE [dbo].[RangoFolio] ADD  CONSTRAINT [DF__RangoFoli__Fecha__6A30C649]  DEFAULT (sysdatetime()) FOR [FechaCreacion]
 GO
-ALTER TABLE [dbo].[RangoFolio] ADD  DEFAULT (suser_sname()) FOR [CreadoPor]
+ALTER TABLE [dbo].[RangoFolio] ADD  CONSTRAINT [DF__RangoFoli__Cread__6B24EA82]  DEFAULT (suser_sname()) FOR [CreadoPor]
 GO
-ALTER TABLE [dbo].[RangoFolio] ADD  DEFAULT ((1)) FOR [Activo]
+ALTER TABLE [dbo].[RangoFolio] ADD  CONSTRAINT [DF__RangoFoli__Activ__6C190EBB]  DEFAULT ((1)) FOR [Activo]
 GO
 ALTER TABLE [dbo].[ResolucionDTE] ADD  DEFAULT (newid()) FOR [Id]
 GO

@@ -53,22 +53,21 @@ namespace PocSII.DteAPI.Controllers
             return Ok(dto);
         }
 
-       
-     //   [HttpGet("{id}")]
-     ////   [Route("consultar/estado/")]
-     //   [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-     //   [ProducesResponseType(typeof(MensajeError), StatusCodes.Status400BadRequest)]
-     //   [ProducesResponseType(typeof(MensajeError), StatusCodes.Status401Unauthorized)]
-     //   public async Task<IActionResult> GetStatusInvoice(string id) {
-     //       var service = _documentServiceFactory.GetService(DocumentType.Invoice);
-     //       var resultGet = await service.GetAsync(id);
-     //       if (!resultGet.IsSuccess) {
-     //           return BadRequest(new MensajeError { Error = "Ha ocurrido un error al obtener la Factura.", Detalle = $"{resultGet.Error}: {resultGet.ErrorDescription}" });
-     //       }
-     //       InvoiceDTO dto = (InvoiceDTO)resultGet.Value;
 
-     //       return Ok(dto);
-     //   }
+        [HttpGet("consultar/estado/{id}")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(MensajeError), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(MensajeError), StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> GetStatusInvoice(string id) {
+            var service = _documentServiceFactory.GetService(DocumentType.Invoice);
+            var resultGet = await service.GetStatusAsync(id);
+            if (!resultGet.IsSuccess) {
+                return BadRequest(new MensajeError { Error = "Ha ocurrido un error al obtener la Factura.", Detalle = $"{resultGet.Error}: {resultGet.ErrorDescription}" });
+            }
+             DTEResponseQuery dte = (DTEResponseQuery)resultGet.Value;
+
+            return Ok(dte);
+        }
 
 
     }

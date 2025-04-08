@@ -12,6 +12,8 @@ namespace PocSII.DteAPIApplicacion.Services.Interfaces
 
         Task<Result<string>> SendAsync(ElectronicDocument documentoElectronico);
         Task<Result<object>> GetAsync(string folio);
+
+        Task<Result<object>> GetStatusAsync(string folio);
         Task<Result<bool>> NotifyAsync(string folio);
     }
 }

@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Security.Cryptography;
 using System.Security.Cryptography.Xml;
+using System.Security.Cryptography.X509Certificates;
+using System.Data.SqlTypes;
 
-namespace PocSII.DteProcessor.Services
-{
-    public static class ElectronicStampService
-    {
+namespace PocSII.DteProcessor.Services {
+    public static class ElectronicStampService {
         public static string SingDDNode(InvoiceDTO invoice) {
             // 1. Construir nodo <DD>
             var ddXml = $@"
@@ -46,6 +46,54 @@ namespace PocSII.DteProcessor.Services
 
             // 5. Devolver la firma base64
             return "GbmDcS9e/jVC2LsLIe1iRV12Bf6lxsILtbQiCkh6mbjckFCJ7fj/kakFTS06Jo8iS4HXvJj3oYZuey53Krniew==";// Convert.ToBase64String(signedBytes);
+        }
+ 
+
+public static string SignXmlFile(string xmlString,  RSA Key, byte[] Certificate) {
+            // --------- FIRMADO X509 ----------------
+            string xmlStringSigned;
+            XmlDocument doc = new XmlDocument();
+            doc.PreserveWhitespace = false; // Ignora los espacios si quieres formatear
+            doc.LoadXml(xmlString);
+            SignedXml signedXml = new SignedXml(doc);  // creo el objto del documento como firmado?
+            signedXml.SigningKey = Key;        // a este documento firmado le agrego la llave
+            Reference reference = new Reference();      // creo una referencia para firmar
+            reference.Uri = "";
+            XmlDsigEnvelopedSignatureTransform env = new XmlDsigEnvelopedSignatureTransform();  // Creo En sobre para el XML -> env
+            reference.AddTransform(env);            //a esta referencia le agrego una transformación de tipo envelope
+            signedXml.AddReference(reference);      // y ahora esta referencia se la asigno al documento firmado
+
+            KeyInfo keyInfo = new KeyInfo();        // Ahora tengo que crear un objeto para firmar
+
+            keyInfo.AddClause(new RSAKeyValue((RSA)Key)); //agrego la firma RSA
+
+          //  X509Certificate MSCert = X509Certificate.CreateFromCertFile(Certificate);   // Descargamos el certificado
+            X509Certificate2 MSCert = new X509Certificate2(Certificate);
+
+            keyInfo.AddClause(new KeyInfoX509Data(MSCert));
+
+
+            signedXml.KeyInfo = keyInfo;
+            signedXml.ComputeSignature();
+            XmlElement xmlDigitalSignatureRSA = signedXml.GetXml(); //elemento con la firma RSA y X509
+
+
+            // Agrego al documento un hijo con las llaves
+            doc.DocumentElement.AppendChild(doc.ImportNode(xmlDigitalSignatureRSA, true));
+
+           
+            using (var stringWriter = new StringWriter())
+            using (var xmlTextWriter = new XmlTextWriter(stringWriter)) {
+                xmlTextWriter.Formatting = Formatting.Indented; // Opcional: para hacerlo más legible
+                doc.WriteTo(xmlTextWriter);
+                 xmlStringSigned = stringWriter.ToString();
+
+            }
+            return xmlStringSigned;
+            //guardo el documento
+            //XmlTextWriter xmltw = new XmlTextWriter(SignedFileName, new UTF8Encoding(false));
+            //doc.WriteTo(xmltw);
+            //xmltw.Close();
         }
     }
 }
