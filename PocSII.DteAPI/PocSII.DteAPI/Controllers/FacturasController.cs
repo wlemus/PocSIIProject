@@ -29,6 +29,7 @@ namespace PocSII.DteAPI.Controllers
         [ProducesResponseType(typeof(MensajeError), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(MensajeError), StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> SendInvoice([FromBody] Invoice request) {
+            try {
 
             var service = _documentServiceFactory.GetService(DocumentType.Invoice);
             var resultSend = await service.SendAsync(request);
@@ -37,7 +38,12 @@ namespace PocSII.DteAPI.Controllers
             }
 
             return Ok(resultSend.Value);
-                     
+
+            } catch (Exception ex) {
+
+               _logger.LogError($"Error al enviar la factura {ex.Message}");
+                return BadRequest(new MensajeError { Error = "Ha ocurrido un error al enviar la Factura.", Detalle = "Error inesperado" });
+            }
         }
         [HttpGet("consultar/info/{id}")]
       //  [Route("consultar/info/")]

@@ -10,5 +10,6 @@ namespace PocSII.DteAPIApplicacion.Services.Interfaces
         Task<bool> Insert(string itemId, T item, string container, string partition);
         Task<T> Get(string itemId, string container, string partition);
         Task<bool> Update(string itemId, T item, string container, string partition);
+        Task<bool> ExistItemId(string itemId, string container, string partition);
     }
 }

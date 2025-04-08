@@ -20,6 +20,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace PocSII.DteAPIApplicacion.Services
 {
@@ -50,19 +51,21 @@ namespace PocSII.DteAPIApplicacion.Services
 
                 var resultGetTaxService = await _processDTEService.GetTaxService( new InvoiceDTO { Factura = new Invoice { Folio = folio } });
 
-                if (resultGetTaxService.IsSuccess)
+                if (!resultGetTaxService.IsSuccess)
                 return Result<object>.Failure(resultGetTaxService.Error);
 
             return Result<object>.Success(resultGetTaxService.Value);
 
         }
         public async Task<Result<string>> SendAsync(ElectronicDocument documentoElectronico) {
-            //Crear suscripciones al publicador
-            //SubscriptorEmailNotification suscriptor = new SubscriptorEmailNotification("send DTE");
-            //suscriptor.suscribe(_publisherNotification);
-
+           
             //STEP 1: Map the ElectronicDocument to Invoice
             Invoice invoice = _mapper.Map<Invoice>(documentoElectronico);
+
+            //STEP 2: Validate exist folio
+            var resultExist = await _invoiceNonSQLService.ExistItemId(invoice.Folio, DocumentContainer.Invoice.GetDescription(), invoice.RutEmisor);
+            if(resultExist)
+                return Result<string>.Failure($"Errores de validación de datos de entrada, la factura con folio: {invoice.Folio} ya se encuentra registrada");
 
             //STEP 2: Validate the Invoice
             var resultInvalidInvoice = await invoice.IsInvalid();
@@ -141,7 +144,7 @@ namespace PocSII.DteAPIApplicacion.Services
             return Result<string>.Success("OK");
         }
 
-        private bool SaveDatabase(InvoiceFullDTO invoiceDTO) {
+        private bool SaveDatabase(InvoiceFullDTO invoiceDTO) {           
             string container = DocumentContainer.Invoice.GetDescription();
             string id = invoiceDTO.DTE.Factura.Folio;
             string partition = invoiceDTO.DTE.Factura.RutEmisor;

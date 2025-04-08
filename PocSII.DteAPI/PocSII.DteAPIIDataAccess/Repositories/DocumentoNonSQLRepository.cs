@@ -14,13 +14,17 @@ namespace PocSII.DteAPIIDataAccess.Repositories
       
         public async Task<DocumentoNonSQLEntity> Get(string itemId, string container, string partition) {
             var company = await _context.DocumentosNonSQL.Where(x => x.Contenedor == container && x.Id==itemId && x.Particion==partition)
-                .FirstOrDefaultAsync(x => x.Id == itemId);
+                .FirstOrDefaultAsync();
             if (company is null)
                 return null;
 
             return company;
         }
-        
+
+        public async Task<bool> ExistItemId(string itemId, string container, string partition) {
+            return await _context.DocumentosNonSQL.AnyAsync(x => x.Contenedor == container && x.Id == itemId && x.Particion == partition);           
+        }
+
         public async Task<DocumentoNonSQLEntity> Insert(string itemId, string item, string container, string partition) {
             var entity = new DocumentoNonSQLEntity {
                 Id = itemId,

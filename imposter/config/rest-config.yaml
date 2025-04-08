@@ -17,7 +17,102 @@ resources:
         <FILE>${context.request.formParams.filename}</FILE>
         <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
         <STATUS>0</STATUS>
+        <TRACKID>10000</TRACKID>
+      </RECEPCIONDTE>      
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  formParams:
+     folio: 101       
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>0</STATUS>
+        <TRACKID>10100</TRACKID>
+      </RECEPCIONDTE>      
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  formParams:
+     folio: 102       
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>0</STATUS>
         <TRACKID>1100</TRACKID>
+      </RECEPCIONDTE>      
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  formParams:
+     folio: 103       
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>0</STATUS>
+        <TRACKID>10300</TRACKID>
+      </RECEPCIONDTE>      
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  formParams:
+     folio: 104       
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>0</STATUS>
+        <TRACKID>10400</TRACKID>
+      </RECEPCIONDTE>           
+- method: POST
+  path: /cgi_dte/UPL/DTEUpload
+  formParams:
+     folio: 105       
+  response:
+    template: true
+    statusCode: 200
+    headers:
+      Content-Type: application/xml
+    content: |
+      <?xml version="1.0" ?>
+      <RECEPCIONDTE>
+        <RUTSENDER>${context.request.formParams.sender}</RUTSENDER>
+        <RUTCOMPANY>${context.request.formParams.company}</RUTCOMPANY>
+        <FILE>${context.request.formParams.filename}</FILE>
+        <TIMESTAMP>${context.request.formParams.timestamp}</TIMESTAMP>
+        <STATUS>0</STATUS>
+        <TRACKID>10500</TRACKID>
       </RECEPCIONDTE>
 - method: POST
   path: /cgi_dte/UPL/DTEUpload

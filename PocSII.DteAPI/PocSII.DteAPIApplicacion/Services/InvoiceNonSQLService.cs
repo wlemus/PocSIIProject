@@ -34,6 +34,12 @@ namespace PocSII.DteAPIApplicacion.Services
             return true;
         }
 
+        public async Task<bool> ExistItemId(string itemId, string container, string partition) {
+
+            return await _nonSQLRepository.ExistItemId(itemId, container, partition);
+      
+        }
+
         public async Task<bool> Update(string itemId, InvoiceFullDTO item, string container, string partition) {
             string json = JsonSerializer.Serialize(item);
             var result = await _nonSQLRepository.Update(itemId, json, container, partition);

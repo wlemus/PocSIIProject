@@ -73,5 +73,19 @@
       <FileName>Interfaces\IProcessDocumentService.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="PocSII.DteBusinessRules.Interfaces.IDteQueryService">
+    <Position X="9.25" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Interfaces\IDteQueryService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PocSII.DteBusinessRules.Interfaces.IDteSenderService">
+    <Position X="11.5" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IDteSenderService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="Segoe UI" Size="10" />
 </ClassDiagram>
