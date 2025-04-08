@@ -1,12 +1,12 @@
 # PocSII - Prototipo de API de Facturación Electrónica para Chile
 
-## 📌 Objetivo Principal
+## Objetivo Principal
 
 Desarrollar un prototipo funcional (Proof of Concept, POC) de una API moderna para la emisión de Documentos Tributarios Electrónicos (DTE) en Chile, específicamente una factura tipo 33 básica.
 
 ---
 
-## 🎯 Objetivos Clave
+## Objetivos Clave
 
 - Crear endpoints REST para:
   - Emitir un DTE
@@ -19,7 +19,9 @@ Desarrollar un prototipo funcional (Proof of Concept, POC) de una API moderna pa
 
 ---
 
-## 🏗️ Arquitectura de la Solución
+## Arquitectura de la Solución
+### Resumen
+El proyecto sigue los principios de Clean Architecture combinada con una arquitectura por capas tradicional, en donde se separan claramente las responsabilidades entre capas. Adicionalmente se aísla la lógica de negocio del framework, infraestructura y drivers externos (como bases de datos o el SII).
 
 ### C4 Nivel 1 - Visión General del Sistema
 
