@@ -149,7 +149,7 @@ Existen 3 métodos del Api:
 }
 ```
 
-2. **Generar DTE**: Enviar una factura al SII
+2. **Generar DTE**: Enviar una factura al SII, **Importante: para efectos del prototipo las facturas validas a ingresar son del folio 100 al 105.  Para validar otras respuestas del SII ingrese los folios del 1101 al 1109.**
    
   POST /api/v1/dte/generar
   
@@ -187,6 +187,7 @@ Existen 3 métodos del Api:
 }
 ```
 3. **Consultar el estado de una factura en el SII** /api/v1/dte/consultar/estado/{folio}
+   **Importante: para efectos del prototipo y para validar las respuestas del SII ingrese los folios del 100 al 111.**
    
     GET /api/v1/dte/consultar/estado/100
   
