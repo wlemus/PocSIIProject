@@ -1,5 +1,6 @@
 ﻿using PocSII.DteBusinessRules.Common;
 using PocSII.DteBusinessRules.Domain;
+using PocSII.DteBusinessRules.Interfaces;
 using PocSII.DteProcessor.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Xml.Serialization;
 
 namespace PocSII.DteProcessor.Services
 {
-   public class DteSenderService
+   public class DteSenderService: IDteSenderService
     {
         private readonly HttpClient _httpClient;
         public DteSenderService(HttpClient httpClient) {

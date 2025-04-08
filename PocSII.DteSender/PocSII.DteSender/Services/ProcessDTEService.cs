@@ -30,7 +30,7 @@ namespace PocSII.DteProcessor.Services
             try {
                 //PASO 1: Sellar documento
                 invoice.TimbreElectronicoInfo.FechaFirmaDigitalDatoDocumento = DateTime.Now;
-               invoice.TimbreElectronicoInfo.FirmaElectronicaDocumento= ElectronicStampService.SingDDNode(invoice);
+               invoice.TimbreElectronicoInfo.FirmaElectronicaDocumento= ElectronicStampService.SignDDNode(invoice);
 
                 //PASO 2: Mapear el DTO a la entidad DTE
                 var envioDTE =  FacturaDTEMapper.MapToEnvioDTE(invoice);                                        

@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PocSII.DteProcessor.Mapper {
-    public class FacturaDTEMapper {
+    public static class FacturaDTEMapper {
         public static EnvioDTE MapToEnvioDTE(InvoiceDTO invoiceDto) {
 
             //-------------------------------Sección 1: SetDTE--------------------

@@ -15,7 +15,7 @@ using System.Data.SqlTypes;
 
 namespace PocSII.DteProcessor.Services {
     public static class ElectronicStampService {
-        public static string SingDDNode(InvoiceDTO invoice) {
+        public static string SignDDNode(InvoiceDTO invoice) {
             // 1. Construir nodo <DD>
             var ddXml = $@"
         <DD>
