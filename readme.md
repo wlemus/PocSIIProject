@@ -56,6 +56,29 @@ El proyecto sigue los principios de Clean Architecture combinada con una arquite
 - **Mock del SII (Imposter):** Simula la respuesta del Servicio de Impuestos Internos.
 - **SMTP Server (Mailtrap):** Simula el envío de correos a los receptores de DTE.
 ---
+![Diagrama de clases del Componente de Reglas de Negocio](documentacion/Diagrama_PocSII-Clases-Bussiness.png)
+
+Este diagrama de clases representa el núcleo de la capa de reglas de negocio (Business Rules) para el procesamiento de DTEs, muestra cómo se encapsulan las validaciones y operaciones sobre un DTE, asegurando una arquitectura limpia, orientada a interfaces, y separando claramente responsabilidades. A continuación se detallan los puntos importantes:
+
+- ElectronicDocument es una clase abstracta base para documentos electrónicos, de la cual hereda la clase concreta Invoice.
+- InvoiceDTO representa el modelo de transferencia de datos (DTO) para una factura, con propiedades como Emisor, Receptor, Folios, Resoluciones, etc.
+- IProcessDocumentService define la interfaz para procesar documentos: validación, firma y envío.
+- InvoiceValidator es una clase de validación especializada en facturas (Invoice) usando FluentValidation.
+- Validadores específicos (DetailInvoiceValidator, ItemCodeDetailInvoiceValidator) se encargan de validar secciones particulares del documento como los detalles y otros.
+- Servicios auxiliares como IDteQueryService y IDteSenderService definen interfaces para consultar y enviar DTEs al SII, respectivamente.
+- DTESentException encapsula errores relacionados al envío del documento al SII.  
+---
+![Diagrama de clases del Componente de Reglas de Negocio](documentacion/Diagrama_PocSII-Clases-Proccesor.png)
+
+Este diagrama representa el cerebro operativo del sistema. Se encarga de recibir una factura, procesarla, firmarla y enviarla al SII, respetando los principios de arquitectura limpia: bajo acoplamiento, separación de responsabilidades y uso de interfaces. A continuación se detallan los puntos importantes:
+
+- ProcessDTEService: Clase principal que implementa IProcessDocumentService. Coordina el flujo de procesamiento: generación, validación firma y envío de un DTE. Usa los servicios:
+  - DteSenderService para enviar el DTE al SII.
+  - DteQueryService para consultar el estado del DTE al SII  
+- FacturaDTEMapper: Clase estática que transforma la factura a DTE, objeto en el formato requerido por el SII.
+- ElectronicStampService: Clase estática encargada de timbrar y firmar electrónicamente el DTE.
+
+---
 ## Seguridad
 - Se utiliza JWT (JSON Web Tokens) para autenticar a los usuarios.
 - Endpoints protegidos requieren token válido en el encabezado Authorization.
@@ -112,7 +135,7 @@ El entorno local se basa en `Docker Compose` con los siguientes servicios:
 
 
 ### COMO PROBAR EL API REST DE ENVIO Y CONSULTA DE FACTURAS
-Se incluye en la documentación una  [colección de postman con ejemplos](documentacion/coleccionPostman).
+Se incluye en la documentación una  [colección de postman con ejemplos](documentacion/PocSII.postman_collection.json).
 Existen 3 métodos del Api:
 1. **Autenticación**: Api para objtener el token JWT para autenticación a los demas servicios
    
