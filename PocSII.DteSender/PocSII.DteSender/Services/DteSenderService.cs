@@ -36,6 +36,12 @@ namespace PocSII.DteProcessor.Services
                 }
 
                 var xml = await response.Content.ReadAsStringAsync();
+                if (string.IsNullOrEmpty(xml)) {
+                   var parsed2 = new DTEResponseReception {
+                        Status = 7
+                    };
+                    return Result<DTEResponseReception>.Success(parsed2);
+                }
 
                 var serializer = new XmlSerializer(typeof(DTEResponseReception));
                 using var reader = new StringReader(xml);
